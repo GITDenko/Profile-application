@@ -1,0 +1,50 @@
+AZURE_STORAGE_CONNECTION_STRING="DefaultEndpointsProtocol=https;AccountName=profilapplikation;AccountKey=Iebv6tD5rD2Igit/VlWA03MorTve3tr65nXH8Mn08idV0CNuDauudWb61nEZTItYzl/2ZFHu44qFIsUxai7ZAg==;EndpointSuffix=core.windows.net"
+AZURE_STORAGE_ACCOUNT="profilapplikation"
+AZURE_STORAGE_ACCESS_KEY="Iebv6tD5rD2Igit/VlWA03MorTve3tr65nXH8Mn08idV0CNuDauudWb61nEZTItYzl/2ZFHu44qFIsUxai7ZAg=="
+
+
+
+TableEndpoint=https://profilapplikation.table.core.windows.net/profileapplication
+// NYA KODEN SOM ANVÄNDS
+SAS_TOKEN=?sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2022-02-27T16:18:08Z&st=2022-01-17T08:18:08Z&spr=https&sig=v5dYnMEUk3hQXvcktg3qRSscVhtjh%2Ft5lrTXCzIf0UE%3D
+
+
+BlobEndpoint=https://profilapplikation.blob.core.windows.net/image-profile;
+QueueEndpoint=https://profilapplikation.queue.core.windows.net/;
+FileEndpoint=https://profilapplikation.file.core.windows.net/;
+TableEndpoint=https://profilapplikation.table.core.windows.net/profileapplication;
+SharedAccessSignature=sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2022-02-27T16:18:08Z&st=2022-01-17T08:18:08Z&spr=https&sig=v5dYnMEUk3hQXvcktg3qRSscVhtjh%2Ft5lrTXCzIf0UE%3D
+
+
+// 
+vars = {MODE = "dev", ORIGIN_URL = 'http://localhost:3000', TABLE_URL = 'https://profilapplikation.table.core.windows.net/profileapplication', BLOB_URL = 'https://profilapplikation.blob.core.windows.net/image-profile', ASSET_URL = 'https://dteststorage.blob.core.windows.net/web-profile', TENANT_ID = '7f60e2bc-b303-477e-9259-272cb12aec3a'}
+
+[env.stage]
+name = "profile-stage"
+vars = {MODE = "stage", ORIGIN_URL = 'https://profile-stage.logfab.workers.dev', TABLE_URL = 'https://profilapplikation.table.core.windows.net/profileapplication', BLOB_URL = 'https://profilapplikation.blob.core.windows.net/image-profile', ASSET_URL = 'https://dteststoragestageing.blob.core.windows.net/web-profile', TENANT_ID = '7f60e2bc-b303-477e-9259-272cb12aec3a'}
+
+[env.prod]
+name = "profile"
+vars = {MODE = "prod", ORIGIN_URL = 'https://profile.logfab.workers.dev', TABLE_URL = 'https://profilapplikation.table.core.windows.net/profileapplication', BLOB_URL = 'https://profilapplikation.blob.core.windows.net/image-profile', ASSET_URL = 'https://dteststorage.blob.core.windows.net/web-profile', TENANT_ID = '7f60e2bc-b303-477e-9259-272cb12aec3a'}
+
+David SAS KEY
+?sv=2020-08-04&ss=bfqt&srt=o&sp=rwdlacupitfx&se=2022-01-30T16:32:39Z&st=2022-01-18T08:32:39Z&spr=https&sig=LXIZ6cjtc%2F2g7mWTchKZxKHqTrIS%2FzvCMO5Z2cwX29s%3D
+
+vars = {MODE = "dev", ORIGIN_URL = 'http://localhost:3000', TABLE_URL = 'https://dteststorage.table.core.windows.net/profile', BLOB_URL = 'https://dteststorage.blob.core.windows.net/image-profile/', ASSET_URL = 'https://dteststorage.blob.core.windows.net/web-profile', TENANT_ID = '7f60e2bc-b303-477e-9259-272cb12aec3a'}
+
+[env.stage]
+name = "profile-stage"
+vars = {MODE = "stage", ORIGIN_URL = 'https://profile-stage.logfab.workers.dev', TABLE_URL = 'https://dteststoragestageing.table.core.windows.net/profile', BLOB_URL = 'https://dteststoragestageing.blob.core.windows.net/image-profile/', ASSET_URL = 'https://dteststoragestageing.blob.core.windows.net/web-profile', TENANT_ID = '7f60e2bc-b303-477e-9259-272cb12aec3a'}
+
+[env.prod]
+name = "profile"
+vars = {MODE = "prod", ORIGIN_URL = 'https://profile.logfab.workers.dev', TABLE_URL = 'https://dteststorage.table.core.windows.net/profile', BLOB_URL = 'https://dteststorage.blob.core.windows.net/image-profile/', ASSET_URL = 'https://dteststorage.blob.core.windows.net/web-profile', TENANT_ID = '7f60e2bc-b303-477e-9259-272cb12aec3a'}
+
+
+AD SETUP
+client secret description: its a secret to everyone
+value: Thr7Q~M57tZ5aGBaCXjF3eAZqJ9IFSOEavZEv
+id: d03bf47e-f8b5-4f2f-9814-54e5903e05ef
+
+URI
+api: api://f0f06431-4b42-4a5d-b7c5-a80c2566c29b

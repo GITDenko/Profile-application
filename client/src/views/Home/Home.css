@@ -1,0 +1,46 @@
+.Card {
+    display: inline-block;
+    width: 18rem;
+    margin: 10px;
+    text-align: center;
+}
+
+.Library {
+    width: 90%;
+    margin: 0px auto;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding-bottom: 30px;
+}
+
+.Card {
+    box-shadow: rgba(50, 50, 93, 0.10) 0px 50px 100px -20px;
+  }
+
+  .denkoTest {
+      float: center;
+      background-color: purple;
+  }
+
+.CardText {
+    text-align: center;
+    height: 50px;
+}
+.searchBoxStyle {
+    text-align: center;
+    display: inline-block;
+    margin: 0.4rem 0.7rem;
+}
+
+.LibraryProfileImg {
+    background-color: #58988e;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    font-size: 72px;
+    font-style: bold;
+    color: white;
+}

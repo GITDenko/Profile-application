@@ -1,0 +1,303 @@
+/* COLOR
+#58988e
+#78b5a9
+#31596C
+#141321
+#7A8E7C
+#ECF4F3
+*/
+
+/* HEADER */
+.headerContainer {
+  width: 100%;
+  background-color: #141321;
+  float: left;
+  color: white;
+  padding: 20px;
+  height: 500px;
+  text-align: center;
+}
+
+.imgProfile {
+  display: block;
+  margin: 40px auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.profileName {
+  text-align: center;
+  margin: 30px;
+  font-weight: bold;
+}
+
+.profileRole {
+  text-align: center;
+}
+
+.profileTags {
+  margin: 40px 0px;
+  word-wrap: break-word;
+}
+
+/* MAIN CONTENT */
+.bigContainer {
+  width: 100%;
+  background-color: #d5e7e6;
+  float: left;
+  padding: 20px;
+  color: #141321;
+}
+
+.generalCard {
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+  width: 1250px;
+  margin: 20px auto;
+  border-radius: 5px;
+  position: relative;
+}
+
+.paddingLeft {
+  padding-left: 320px;
+}
+
+.Section {
+  padding: 30px;
+}
+
+.sectionHeader {
+  font-weight: bold;
+  text-align: center;
+  color: #141321;
+}
+
+/* BASIC INFO */
+.about {
+  float: left;
+  padding: 20px;
+  width: 50%;
+}
+
+.basicInfoTable {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.InfoRow {
+  font-weight: bold;
+  display: table-cell;
+  width: 100%;
+}
+
+.InfoCell {
+  display: table-cell;
+  width: 100%;
+}
+
+.Tags {
+  padding: 5px;
+  float: left;
+  font-size: 16px;
+}
+
+.historyCity {
+  font-weight: bold;
+  font-size: 16px;
+  display: inline;
+}
+
+/* HISTORY CARDS */
+.historyCardHeader {
+  background-color: #141321;
+  width: 25%;
+  float: left;
+  overflow: hidden;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  overflow-wrap: break-word;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+.historyPlace {
+  font-size: 20px;
+}
+
+.historyPeriod {
+  font-size: 12px;
+}
+
+.historyContent {
+  width: 100%;
+  float: left;
+  padding: 20px;
+  background-color: white;
+}
+
+/* ROLL ELLER UTBILDNINGSNAMN */
+.historyHeading {
+  font-size: 18px;
+  color: #141321;
+}
+
+.inline {
+  display: inline;
+}
+
+.printButton {
+  margin: 0 auto;
+}
+
+/* RESPOSNIVE */
+@media screen and (max-width: 1300px) {
+  .generalCard {
+    width: 850px;
+  }
+
+  .paddingLeft {
+    padding-left: 220px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .bigContainer {
+    padding: 20px;
+  }
+
+  .about {
+    width: 100%;
+  }
+
+  /* HISTORY CARDS */
+  .generalCard {
+    width: 100%;
+  }
+
+  .historyCardHeader {
+    width: 100%;
+    height: 100px;
+  }
+
+  .paddingLeft {
+    padding-top: 100px;
+    padding-left: 0%;
+  }
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .Navbar, .printButton {
+    display: none;
+  }
+
+  .PrintContainer {
+    height: 100%;
+  }
+
+  .headerContainer {
+    height: 250px;
+  }
+
+  .imgProfile {
+    margin: 10px auto;
+    width: 100px;
+    height: 100px;
+  }
+
+  .profileName {
+    text-align: center;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .profileRole {
+    text-align: center;
+    font-size: 16px;
+  }
+
+  /* HISTORY CONTENT */
+  .generalCard {
+    width: 100%;
+    margin-left: -10px;
+    break-inside: avoid;
+  }
+
+  .Section {
+    padding: 0 0 10px 0;
+    break-inside: avoid;
+    margin: 0 auto;
+  }
+
+  .historyHeading {
+    font-size: 11px;
+  }
+
+  .historyPlace {
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  .historySummary {
+    font-size: 9px;
+  }
+
+  .historyPeriod {
+    font-size: 8px;
+  }
+
+  .historyCity {
+    font-size: 11px;
+  }
+
+  .InfoRow {
+    font-size: 8px;
+  }
+
+  .InfoCell {
+    font-size: 8px;
+  }
+
+  .sectionHeader {
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  .Tags {
+    font-size: 8px;
+    padding: 1px;
+  }
+
+  /* Text placement in history cards*/
+  .paddingLeft {
+    padding-left: 150px;
+  }
+
+  .about {
+    padding: 10px;
+  }
+
+  .historyCardHeader {
+    padding: 0px;
+  }
+
+  .historyContent {
+    padding: 10px;
+  }
+
+  .generalCard {
+    margin: 12px auto;
+    width: 80%;
+  }
+}

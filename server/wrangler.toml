@@ -1,0 +1,23 @@
+name = "profile-dev"
+type = "javascript"
+zone_id = ""
+account_id = ""
+route = ""
+workers_dev = true
+compatibility_date = "2021-11-17"
+
+vars = {MODE = "dev", ORIGIN_URL = 'http://localhost:3000', TABLE_URL = 'https://dteststorage.table.core.windows.net/profile', BLOB_URL = 'https://dteststorage.blob.core.windows.net/image-profile/', ASSET_URL = 'https://dteststorage.blob.core.windows.net/web-profile', TENANT_ID = '7f60e2bc-b303-477e-9259-272cb12aec3a'}
+
+[env.stage]
+name = "profile-stage"
+vars = {MODE = "stage", ORIGIN_URL = 'https://profile-stage.logfab.workers.dev', TABLE_URL = 'https://dteststoragestageing.table.core.windows.net/profile', BLOB_URL = 'https://dteststoragestageing.blob.core.windows.net/image-profile/', ASSET_URL = 'https://dteststoragestageing.blob.core.windows.net/web-profile', TENANT_ID = '7f60e2bc-b303-477e-9259-272cb12aec3a'}
+
+[env.prod]
+name = "profile"
+vars = {MODE = "prod", ORIGIN_URL = 'https://profile.logfab.workers.dev', TABLE_URL = 'https://dteststorage.table.core.windows.net/profile', BLOB_URL = 'https://dteststorage.blob.core.windows.net/image-profile/', ASSET_URL = 'https://dteststorage.blob.core.windows.net/web-profile', TENANT_ID = '7f60e2bc-b303-477e-9259-272cb12aec3a'}
+
+[build]
+command = "npm run build"
+
+[build.upload]
+format = "service-worker"

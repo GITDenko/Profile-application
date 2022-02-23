@@ -1,0 +1,713 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: Profile Api 
+  description: Api to describe Profile Authority Application
+
+servers:
+  - url: https://api.server.test/v1
+
+security:
+  - OAuth: []
+
+paths:
+#Library
+  /api/profiles:
+    get:
+      description: Retrieves a list of all profiles showing a certain amount per page
+      tags:
+        - 'Library'
+      summary: Gets List of all profiles
+      parameters:
+          - $ref: '#/components/parameters/PageLimit'
+          - $ref: '#/components/parameters/PageOffset'
+      responses:
+        '200':
+          $ref: '#/components/responses/200Profile'
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+
+  /api/profiles/filtered:
+    get:
+      parameters:
+      - in: query
+        name: name
+        schema:
+          type: object
+          properties:
+            name: 
+              type: string
+        description: results filtered by name
+      - in: query
+        name: skills
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/Skill'
+        description: results filtered by skills
+      - in: query
+        name: roles
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        description: results filtered by roles
+      - in: query
+        name: experience
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/experience'
+        description: results filtered by experiences
+      description: Retrieves a filtered page of profiles
+      tags:
+        - Library
+      summary: Gets a filtered list of profiles
+      responses:
+        '200':
+          $ref: '#/components/responses/200Profile'
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+    
+#Profile                 
+  /api/profiles/{Id}:
+    get: 
+      description: Retrieves the profile page of a specific user
+      tags:
+        - Profile
+      summary: Gets a specific profile page
+      parameters:
+          - $ref: '#/components/parameters/ProfileId'
+      responses:
+        '200':
+          $ref: '#/components/responses/200Profile'
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+
+  /api/profiles/{Id}/educations:
+    get: 
+      description: Retrieves list of profiles educations
+      tags:
+        - Profile
+      summary: Opens an expanded view of profiles educations
+      parameters:
+          - $ref: '#/components/parameters/ProfileId'
+      responses:
+        '200':
+          description: Successfully returned a list of education for user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                 $ref: '#/components/schemas/education'
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+                    
+  /api/profiles/{Id}/educations/{Id}:
+    get: 
+      summary: Shows the specific experience
+      tags:
+        - Profile
+      parameters:
+        - $ref: '#/components/parameters/ProfileId'
+        - $ref: '#/components/parameters/ExperienceId'
+      responses:
+        '200':
+          description: Successfully returns specific education
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/education'
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+    
+    put:
+      tags:
+       - Profile
+      summary: Edits Specific education
+      parameters:
+        - $ref: '#/components/parameters/ProfileId'
+        - $ref: '#/components/parameters/ExperienceId'
+      requestBody:
+        description: Sends new information from Create education Form
+        required: true
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/education'
+      responses:
+        '200':
+          description: Successfully updates a specific education
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+          
+    delete:
+      summary: Deletes Current education
+      tags:
+        - Profile
+      parameters:
+        - $ref: '#/components/parameters/ProfileId'
+        - $ref: '#/components/parameters/ExperienceId'
+      responses:
+        '200':
+          description: Succesfully Deleted a specific education
+        '404':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+                    
+  /api/profiles/{Id}/educations/create:
+    post: 
+      summary: Successfully add a new education
+      tags:
+        - Profile
+      parameters:
+        - $ref: '#/components/parameters/ProfileId'
+      requestBody:
+        description: Sends new information from Create education Form
+        required: true
+        content:
+         application/json:
+           schema:
+               $ref: '#/components/schemas/education'
+      responses:
+        '201':
+          description: Succesfully created a new education
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+
+  /api/profiles/{Id}/experience:
+    get: 
+      description: Retrieves list of profiles experiences
+      tags:
+        - Profile
+      summary: Opens an expanded view of profiles experiences
+      parameters:
+        - $ref: '#/components/parameters/ProfileId'
+      responses:
+        '200':
+          description: Successfully returned a list of experiences for user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                 $ref: '#/components/schemas/experience'
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+                    
+  /api/profiles/{Id}/experience/{Id}:
+    get: 
+      summary: Shows the specific experience
+      tags:
+        - Profile
+      parameters:
+        - $ref: '#/components/parameters/ProfileId'
+        - $ref: '#/components/parameters/ExperienceId'
+      responses:
+        '200':
+          description: Successfully returns specific experience
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/experience'
+        '204':
+          $ref: '#/components/responses/204Error'              
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+    
+    put:
+      tags:
+       - Profile
+      summary: Edits Specific experience
+      parameters:
+        - $ref: '#/components/parameters/ProfileId'
+        - $ref: '#/components/parameters/ExperienceId'
+      requestBody:
+        description: Edits Specific experience
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/experience'
+         
+      responses:
+        '200':
+          description: Successfully updates a specific experience
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+          
+    delete:
+      summary: Deletes Current experience
+      tags:
+        - 'Profile'
+      parameters:
+        - $ref: '#/components/parameters/ProfileId'
+        - $ref: '#/components/parameters/ExperienceId'
+      responses:
+        '200':
+          description: Succesfully Deleted a specific experience
+        '404':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+                    
+  /api/profiles/{Id}/experience/create:
+    post: 
+      summary: Successfully add a new experience
+      tags:
+        - 'Profile'
+      parameters:
+        - $ref: '#/components/parameters/ProfileId'
+      requestBody:
+        description: Sends new information from Create experience Form
+        required: true
+        content:
+         application/json:
+           schema:
+              $ref: '#/components/schemas/experience'
+      responses:
+        '201':
+          description: Succesfully created a new experience
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+                    
+  /api/profiles/{Id}/skills:
+    get: 
+      description: Retrieves list of profiles skills
+      tags:
+        - Profile
+      parameters:
+        - $ref: '#/components/parameters/ProfileId'
+      responses:
+        '200':
+          description: Successfully returned a list of all skills
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Skill'
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+
+# Admin
+  /api/skills:      # do we need a role/admin check here or is it done in method
+    get: 
+      description: Retrieves list of all skills
+      tags:
+        - Admin
+      security:
+          - OAuth: [view_skills_roles]
+      responses:
+        '200':
+          description: Successfully returned a list of all skills
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                 $ref: '#/components/schemas/Skill'
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'      
+                    
+    post:
+      tags: 
+      - Admin
+      summary: Add new skill
+      description: Skill object is created to the library
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/Skill'
+      responses:
+        '201':
+          description: Created
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+
+  /api/skills/{skillsId}:
+    delete:
+      summary: Deletes specific Skill
+      tags:
+        - 'Admin'
+      parameters:
+        - name: skillsId
+          in: path
+          description: ID of Skill
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Succesfully deleted specific role
+        '404':
+          $ref: '#/components/responses/204Error' 
+        '400':
+          $ref: '#/components/responses/400Error'
+
+  /api/roles:      # do we need a role/admin check here or is it done in method
+    get: 
+      description: Retrieves list of all roles
+      tags:
+        - Admin
+      security:
+          - OAuth: [view_skills_roles]
+      responses:
+        '200':
+          description: Successfully returned a list of all roles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+        '204':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+                    
+    post:
+      tags: 
+      - Admin
+      summary: Add new role
+      description: Role object is created to the library
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/Role'
+      responses:
+        '201':
+          description: Created
+        '204':
+          $ref: '#/components/responses/204Error'
+        '405':
+          description: Invalid input
+
+  /api/roles/{Id}:
+    delete:
+      summary: Deletes specific Role
+      tags:
+        - 'Admin'
+      parameters:
+        - name: Id
+          in: path
+          description: ID of Role
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Succesfully deleted specific role
+        '404':
+          $ref: '#/components/responses/204Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+
+# Default
+  /login:
+    get: 
+      description: Retrieves log in page if user is not yet logged in
+      tags:
+        - Default
+      responses:
+        '200':
+          description: successfully returns log in page
+        '204':
+          $ref: '#/components/responses/204Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+
+
+components:
+
+# Security Schemas
+  securitySchemes:
+    OAuth:
+      type: oauth2
+      description: This API uses OAuth 2
+      flows:
+        implicit:
+          authorizationUrl: /services/auth/
+          scopes: {}
+          
+
+     
+# Schemas
+  schemas:
+    User:
+      type: array
+      items:
+        type: object
+        properties:
+          fullName:
+            type: string
+          email:              # Email is unique so can be used as ID
+            type: string
+          roles:              # admin/user/etc...
+            type: array       # change roles to enum
+            items:
+              type: string
+
+    Profile:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string      # string due to unsure what ID will be (could be email)
+          firstName:
+            type: string
+          lastName:
+            type: string
+          contactNumber:
+            type: string        # could be +44
+          imagePath:
+            type: string        # image path/url
+          roles:
+            type: array
+            items:
+              $ref: '#/components/schemas/Role'
+          skills:
+            type: array
+            items:
+              $ref: '#/components/schemas/Skill'
+          educations:
+            type: array
+            items:
+              $ref: '#/components/schemas/education'
+          experiences:
+            type: array
+            items:
+              $ref: '#/components/schemas/experience'
+#Tag
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string      
+      
+    Role:
+      allOf:
+        - $ref: '#/components/schemas/Tag'
+    
+    Skill:
+      allOf:
+        - $ref: '#/components/schemas/Tag'
+
+# Experiences
+    education:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        place:
+          type: string
+        period:   
+          type: string
+        skills:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Skill'
+         
+    experience:
+      allOf:
+        - $ref: '#/components/schemas/education'
+          type: object
+          properties:
+          content:
+            type: string
+          roles:
+            type: array
+            items: 
+              $ref: '#/components/schemas/Role'
+
+# Error Message
+    Error:
+      type: object
+      properties:   
+        message:
+          type: string
+
+# Parameters
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Limits the number of items on a page
+      schema:
+        type: integer
+      
+    PageOffset:
+      name: offset
+      in: query
+      description: Specifies the number of items to display
+      schema:
+        type: integer
+        
+    ProfileId:
+      name: Id
+      in: path
+      description: ID of profile to get
+      required: true
+      schema:
+        type: string
+        
+    ExperienceId:
+      name: Id
+      in: path
+      description: ID of specific experience
+      required: true
+      schema:
+        type: string
+
+# Responses
+  responses:
+    200Profile:
+          description: Successfull return
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Profile'
+                     
+    204Error:
+      description: No Content Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+                
+    400Error:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+                
+    401Error:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    403Error:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+                
+    404Error:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    408Error:
+      description: Request Timeout
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    415Error:
+      description: Media Type Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

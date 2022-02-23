@@ -1,0 +1,31 @@
+.Logo {
+    width: 50px;
+}
+
+.Navbar {
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+}
+
+.NbText {
+    color: #141321;
+}
+
+.NbText:hover {
+    color: #58988e;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.NbAccount {
+    margin-top: 6px;
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 992px) {
+    .NbAccount {
+        margin-left: 0px;
+        margin-bottom: 5px;
+    }
+}
